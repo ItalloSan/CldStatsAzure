@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CLDStats.Migrations.CLDStats
+namespace CldStatsData.Migrations.CldStats
 {
     public partial class InitialCreate : Migration
     {

@@ -41,7 +41,7 @@ namespace CldStatsFunctions
 
             var quarters = await _cldStatsDbContext.Quarters.ToListAsync();
 
-            return new OkObjectResult(responseMessage);
+            return new OkObjectResult(quarters);
         }
     }
 }
