@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using CldStatsData;
+using Microsoft.EntityFrameworkCore;
 
 namespace CldStatsFunctions
 {
@@ -38,7 +39,7 @@ namespace CldStatsFunctions
 
             if (name != "quarters") return new OkObjectResult(responseMessage);
 
-            var quarters = _cldStatsDbContext.Quarter;
+            var quarters = await _cldStatsDbContext.Quarter.ToListAsync();
 
             return new OkObjectResult(responseMessage);
         }
