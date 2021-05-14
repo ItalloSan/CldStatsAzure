@@ -21,15 +21,19 @@ namespace CldStatsFunctions
 
             builder.Services.AddDbContext<CldStatsDbContext>(options1 =>
             {
-                options1.UseSqlServer(
-                    config["sqldb_connection"],
-                    builder =>
-                    {
-                        builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
-                        builder.CommandTimeout(10);
-                    }
+                options1.UseSqlServer("Server=tcp:cldscot.database.windows.net,1433;Initial Catalog=PIPStats;Persist Security Info=False;User ID=itallosan;Password=Itall0{}$$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+                    //
+                    //
+                    //
+                    // config["sqldb_connection"],
+                    // builder =>
+                    // {
+                    //     builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+                    //     builder.CommandTimeout(10);
+                    // }
                 );
             });
         }
     }
 }
+//optionsBuilder.UseSqlServer("Server=tcp:cldscot.database.windows.net,1433;Initial Catalog=PIPStats;Persist Security Info=False;User ID=itallosan;Password=Itall0{}$$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
