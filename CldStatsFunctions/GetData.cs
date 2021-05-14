@@ -25,7 +25,7 @@ namespace CldStatsFunctions
         public async void Run([ServiceBusTrigger("cldsbqueue", Connection = "serviveBusConnection")] string myQueueItem, ILogger log)
         {
             log.LogInformation($"C# ServiceBus queue trigger function processed message: {myQueueItem}");
-            await GetCentre(myQueueItem);
+            //await GetCentre(myQueueItem);
         }
 
         //[FunctionName("GetCentre")]
