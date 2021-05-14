@@ -1,15 +1,20 @@
-﻿
-using CldStatsData.CldStatsModels;
+﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System.Linq;
+
 
 #nullable disable
 
-namespace CldStatsData
+namespace CldStatsData.CldStatsModels
 {
-    public partial class CldStatsDbContext : DbContext
+    public partial class CLDStatsDbContext : DbContext
     {
-        
-        public CldStatsDbContext(DbContextOptions<CldStatsDbContext> options)
+        public CLDStatsDbContext()
+        {
+        }
+
+        public CLDStatsDbContext(DbContextOptions<CLDStatsDbContext> options)
             : base(options)
         {
         }
@@ -31,17 +36,15 @@ namespace CldStatsData
         public virtual DbSet<PipUserStatus> PipUserStatuses { get; set; }
         public virtual DbSet<Priority> Priorities { get; set; }
         public virtual DbSet<Quarter> Quarters { get; set; }
+        
 
-
-
-
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // {
-        //     if (!optionsBuilder.IsConfigured)
-        //     {
-        //         optionsBuilder.UseSqlServer("Server=tcp:cldscot.database.windows.net,1433;Initial Catalog=PIPStats;Persist Security Info=False;User ID=itallosan;Password=Itall0{}$$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        //     }
-        // }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Name=CLDStats");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

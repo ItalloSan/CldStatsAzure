@@ -39,7 +39,7 @@ namespace CldStatsFunctions
 
             if (name != "quarters") return new OkObjectResult(responseMessage);
 
-            var quarters = await _cldStatsDbContext.Quarter.ToListAsync();
+            var quarters = await _cldStatsDbContext.Quarters.ToListAsync();
 
             return new OkObjectResult(responseMessage);
         }
