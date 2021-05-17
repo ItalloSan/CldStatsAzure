@@ -5,6 +5,7 @@
     <UserSecretsId>24c855da-8a83-475e-b449-4b914f569ff7</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="GetData.cs" />
     <Compile Remove="ReadFromBus.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -15,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CldStatsData\CldStatsData.csproj" />
+    <ProjectReference Include="..\ServiceFactory\CldServiceFactory.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

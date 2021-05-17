@@ -1,7 +1,9 @@
 ﻿using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Hosting;
 using CldStatsData;
+using CldServiceFactory.Services;
 using System;
+using CldServiceFactory.Interfaces;
 using CldStatsFunctions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +26,8 @@ namespace CldStatsFunctions
             {
                 options1.UseSqlServer(connStr ?? throw new InvalidOperationException());
             });
+
+            builder.Services.AddScoped<ILookupTables, LookupTables>();
         }
     }
 }
