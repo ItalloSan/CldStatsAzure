@@ -1,0 +1,41 @@
+using System;
+using System.Threading.Tasks;
+using System.Web.Http;
+using CldStatsData;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
+namespace CldStatsFunctions
+{
+    public class GetClusters
+    {
+        private readonly CldStatsDbContext _cldStatsDbContext;
+        public GetClusters(CldStatsDbContext cldStatsDbContext)
+        {
+            _cldStatsDbContext = cldStatsDbContext;
+        }
+        
+        [FunctionName("GetClusters")]
+        public async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation("C# HTTP trigger GetClusters processed a request.");
+
+            try
+            {
+                var clusters = await _cldStatsDbContext.Quarters.ToListAsync();
+                return new OkObjectResult(clusters);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return new BadRequestErrorMessageResult(e.Message);
+            }
+        }
+    }
+}

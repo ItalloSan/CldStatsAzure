@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,22 +19,21 @@ namespace CldStatsFunctions
             _cldStatsDbContext = cldStatsDbContext;
         }
 
-        [FunctionName("ReadFromBus")]
-        public async void Run([ServiceBusTrigger("cldsbqueue", Connection = "serviveBusConnection")] string myQueueItem, ILogger log)
-        {
-            log.LogInformation($"C# ServiceBus queue trigger function processed message: {myQueueItem}");
-            //await GetCentre(myQueueItem);
-        }
+        // [FunctionName("ReadFromBus")]
+        // public async void Run([ServiceBusTrigger("cldsbqueue", Connection = "serviveBusConnection")] string myQueueItem, ILogger log)
+        // {
+        //     log.LogInformation($"C# ServiceBus queue trigger function processed message: {myQueueItem}");
+        //     //await GetCentre(myQueueItem);
+        // }
 
-        //[FunctionName("GetCentre")]
-        //public async Task<IActionResult> GetCentre([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, ILogger log)
-        public async Task<IActionResult> GetCentre(string message)
+        [FunctionName("GetCentre")]
+        public async Task<IActionResult> GetCentre([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, ILogger log)
+        //public async Task<IActionResult> GetCentre(string message)
         {
             try
             {
                 //log.LogInformation($"C# ServiceBus message: {message}");
                 var centres = await _cldStatsDbContext.Centres.ToListAsync();
-
                 return new OkObjectResult(centres);
             }
             catch (Exception e)
