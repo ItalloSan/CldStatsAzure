@@ -27,7 +27,7 @@ namespace CldStatsFunctions
                 options1.UseSqlServer(connStr ?? throw new InvalidOperationException());
             });
 
-            builder.Services.AddScoped<ILookupTables, LookupTables>();
+            builder.Services.AddScoped<ILookupTablesService, LookupTablesService>();
         }
     }
 }

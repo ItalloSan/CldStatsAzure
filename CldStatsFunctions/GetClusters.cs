@@ -14,9 +14,9 @@ namespace CldStatsFunctions
     public class GetClusters
     {
         //private readonly CldStatsDbContext _cldStatsDbContext;
-        private readonly ILookupTables _lookupTables;
+        private readonly ILookupTablesService _lookupTables;
         
-        public GetClusters(CldStatsDbContext cldStatsDbContext, ILookupTables lookupTables)
+        public GetClusters(CldStatsDbContext cldStatsDbContext, ILookupTablesService lookupTables)
         {
             //_cldStatsDbContext = cldStatsDbContext;
             _lookupTables = lookupTables;
@@ -32,7 +32,8 @@ namespace CldStatsFunctions
             try
             {
                 //var clusters = await _cldStatsDbContext.Clusters.ToListAsync();
-                var clusters = await _lookupTables.GetClusters();
+                var clusters = await _lookupTables.GetLookupTables();
+                
                 return new OkObjectResult(clusters);
             }
             catch (Exception e)

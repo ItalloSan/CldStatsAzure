@@ -15,8 +15,8 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.12" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CLDServiceFactory\CldServiceFactory.csproj" />
     <ProjectReference Include="..\CldStatsData\CldStatsData.csproj" />
-    <ProjectReference Include="..\ServiceFactory\CldServiceFactory.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
