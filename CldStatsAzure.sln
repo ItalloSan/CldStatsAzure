@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CldStatsFunctions", "CldSta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CldServiceFactory", "CLDServiceFactory\CldServiceFactory.csproj", "{31C9083B-8F87-40CA-AB99-ACCD0DA6655F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CldStatsDto", "CldStatsDto\CldStatsDto.csproj", "{038AFE89-EB96-4752-B299-A74F4ECE578C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{31C9083B-8F87-40CA-AB99-ACCD0DA6655F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31C9083B-8F87-40CA-AB99-ACCD0DA6655F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31C9083B-8F87-40CA-AB99-ACCD0DA6655F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{038AFE89-EB96-4752-B299-A74F4ECE578C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{038AFE89-EB96-4752-B299-A74F4ECE578C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{038AFE89-EB96-4752-B299-A74F4ECE578C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{038AFE89-EB96-4752-B299-A74F4ECE578C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 using System.Web.Http;
 using CldServiceFactory.Interfaces;
-using CldStatsData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -13,12 +12,10 @@ namespace CldStatsFunctions
 {
     public class GetClusters
     {
-        //private readonly CldStatsDbContext _cldStatsDbContext;
         private readonly ILookupTablesService _lookupTables;
         
-        public GetClusters(CldStatsDbContext cldStatsDbContext, ILookupTablesService lookupTables)
+        public GetClusters(ILookupTablesService lookupTables)
         {
-            //_cldStatsDbContext = cldStatsDbContext;
             _lookupTables = lookupTables;
         }
         
@@ -44,3 +41,4 @@ namespace CldStatsFunctions
         }
     }
 }
+    

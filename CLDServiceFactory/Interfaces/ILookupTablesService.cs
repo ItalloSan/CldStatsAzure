@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CldStatsData.CldStatsModels;
-using CldStatsData.Dto;
+using CldStatsDto.Dto;
 
 namespace CldServiceFactory.Interfaces
 {
