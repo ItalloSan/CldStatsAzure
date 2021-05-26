@@ -28,7 +28,9 @@ namespace CldServiceFactory.Services
                 var quarters = _cldStatsDbContext.Quarters
                     .Where(q => q.Id <= quarterId && q.Id > quarterId - 10);
 
-                var centres = _cldStatsDbContext.Centres.OrderBy(c => c.Name).ToList();
+                var centres = _cldStatsDbContext.Centres
+                    .Include(c => c.CentreFootfalls)
+                    .OrderBy(c => c.Name).ToList();
 
                 return null;
 
