@@ -28,6 +28,7 @@ namespace CldStatsFunctions
             });
 
             builder.Services.AddScoped<ILookupTablesService, LookupTablesService>();
+            builder.Services.AddScoped<ICentreFootfallService, CentreFootfallService>();
         }
     }
 }
