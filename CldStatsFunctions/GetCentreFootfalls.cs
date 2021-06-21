@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CldStatsFunctions
 {
+    //CI Test
     public class GetCentreFootfalls
     {
         private readonly ICentreFootfallService _centreFootfallService;
