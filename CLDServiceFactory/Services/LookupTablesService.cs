@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CldServiceFactory.Interfaces;
+using CldServiceFactory.Services.Interfaces;
 using CldStatsData;
 using CldStatsData.CldStatsModels;
 using CldStatsDto.Dto;
@@ -38,7 +38,7 @@ namespace CldServiceFactory.Services
             try
             {
                 //var lookupTablesDto = await _cldStatsDbContext.Clusters.ToListAsync();
-                var quarters = await _cldStatsDbContext.Quarters.OrderBy(q => q.StartDate).ToListAsync();
+                var quarters = await _cldStatsDbContext.Quarters.ToListAsync();
                 var users = await _cldStatsDbContext.AspNetUsers.OrderBy(u => u.UserName).ToListAsync();
                 var activityTypes = await _cldStatsDbContext.ActitityTypes.OrderBy(q => q.Description).ToListAsync();
                 var lookupTablesDto = new LookupTablesDto()

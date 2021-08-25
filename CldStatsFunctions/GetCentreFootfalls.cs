@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Web.Http;
-using CldServiceFactory.Interfaces;
+using CldServiceFactory.Services.Interfaces;
 using CldStatsDto.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using CldStatsDto.Dto;
 
-namespace CldServiceFactory.Interfaces
+namespace CldServiceFactory.Services.Interfaces
 {
     public interface ICentreFootfallService
     {

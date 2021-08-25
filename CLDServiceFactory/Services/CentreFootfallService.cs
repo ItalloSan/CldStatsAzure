@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CldServiceFactory.Interfaces;
+using CldServiceFactory.Services.Interfaces;
 using CldStatsData;
 using CldStatsDto.Dto;
 using Microsoft.EntityFrameworkCore;
@@ -39,7 +39,6 @@ namespace CldServiceFactory.Services
             {
                 throw new ApplicationException(e.Message, e);
             }
-            return null;
         }
     }
 }

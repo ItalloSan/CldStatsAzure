@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>048e3eb4-bae2-4f62-89a1-88a6541c4787</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CLDServiceFactory\CldServiceFactory.csproj" />
+    <ProjectReference Include="..\CldStatsData\CldStatsData.csproj" />
+    <ProjectReference Include="..\CldStatsDto\CldStatsDto.csproj" />
+  </ItemGroup>
+
+</Project>

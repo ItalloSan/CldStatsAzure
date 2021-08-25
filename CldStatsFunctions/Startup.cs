@@ -3,7 +3,7 @@ using Microsoft.Azure.WebJobs.Hosting;
 using CldStatsData;
 using CldServiceFactory.Services;
 using System;
-using CldServiceFactory.Interfaces;
+using CldServiceFactory.Services.Interfaces;
 using CldStatsFunctions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
