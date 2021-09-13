@@ -8,9 +8,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["CldStatsApi/CldStatsApi.csproj", "CldStatsApi/"]
-COPY ["CLDServiceFactory/CldServiceFactory.csproj", "CLDServiceFactory/"]
-COPY ["CldStatsDto/CldStatsDto.csproj", "CldStatsDto/"]
-COPY ["CldStatsData/CldStatsData.csproj", "CldStatsData/"]
 RUN dotnet restore "CldStatsApi/CldStatsApi.csproj"
 COPY . .
 WORKDIR "/src/CldStatsApi"

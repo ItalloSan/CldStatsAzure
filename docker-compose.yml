@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  cldstatsapi:
+    image: ${DOCKER_REGISTRY-}cldstatsapi
+    build:
+      context: .
+      dockerfile: CldStatsApi/Dockerfile
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      - SA_PASSWORD=Itall0{}$$
+      - ACCEPT_EULA=Y
+    ports:
+      - "5434:1433"

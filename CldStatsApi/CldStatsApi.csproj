@@ -4,7 +4,12 @@
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>048e3eb4-bae2-4f62-89a1-88a6541c4787</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="docker-compose.yml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
