@@ -37,7 +37,8 @@ namespace CldStatsApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CldStatsApi", Version = "v1" });
             });
 
-            var connStr = "Server=WINDELL-073Q1R6;Initial Catalog=PIPStats;integrated security=True;Connect Timeout=20;";//Environment.GetEnvironmentVariable("sqldb_connection");
+            //var connStr = "Server=BOSS-16;Initial Catalog=PIPStats;integrated security=True;Connect Timeout=20;";//Environment.GetEnvironmentVariable("sqldb_connection");
+            var connStr = Configuration.GetConnectionString("sqldb_connection");
             services.AddDbContext<CldStatsDbContext>(options =>
                 {
                     options.UseSqlServer(connStr);
