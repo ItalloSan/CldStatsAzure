@@ -5,8 +5,9 @@ namespace CldStatsDto.Dto
 {
     public class LookupTablesDto
     {
-        public List<AspNetUser> AspNetUsers { get; set; }
-        public List<ActitityType> ActitityTypes { get; set; }
-        public List<Quarter> Quarters { get; set; }
+        public List<UserDto> Users { get; set; }
+        public List<ActivityTypeDto> ActivityTypes { get; set; }
+        public List<QuarterDto> Quarters { get; set; }
+        public List<ClusterDto> Clusters { get; set; }
     }
 }

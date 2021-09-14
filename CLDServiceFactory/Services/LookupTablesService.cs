@@ -37,16 +37,53 @@ namespace CldServiceFactory.Services
         {
             try
             {
-                //var lookupTablesDto = await _cldStatsDbContext.Clusters.ToListAsync();
-                var quarters = await _cldStatsDbContext.Quarters.ToListAsync();
-                var users = await _cldStatsDbContext.AspNetUsers.OrderBy(u => u.UserName).ToListAsync();
-                var activityTypes = await _cldStatsDbContext.ActitityTypes.OrderBy(q => q.Description).ToListAsync();
+                var quarters = await _cldStatsDbContext.Quarters
+                    .Select(q => new QuarterDto()
+                    {
+                        Id = q.Id,
+                        Name = q.Name,
+                        StartDate = q.StartDate,
+                        EndDate = q.EndDate
+                    })
+                    .ToListAsync();
+
+                var users = await _cldStatsDbContext.AspNetUsers
+                    .Select(u => new UserDto()
+                    {
+                        Id = u.Id,
+                        Email = u.Email
+                    })
+                    .OrderBy(u => u.Email)
+                    .ToListAsync();
+
+                var activityTypes = await _cldStatsDbContext.ActitityTypes
+                    .Select(a => new ActivityTypeDto()
+                    {
+                        Id = a.Id,
+                        Name = a.Name,
+                        Description = a.Description,
+                        PriorityId = a.PriorityId
+                    })
+                    .OrderBy(q => q.PriorityId)
+                    .ThenBy(q => q.Name)
+                    .ToListAsync();
+                
+                var clusters = await _cldStatsDbContext.Clusters
+                    .Select(c => new ClusterDto()
+                        {
+                            Name = c.Name,
+                            Id = c.Id
+                        }
+                    )
+                    .ToListAsync();
                 var lookupTablesDto = new LookupTablesDto()
                 {
                     Quarters = quarters,
-                    AspNetUsers = users,
-                    ActitityTypes = activityTypes
+                    Users = users,
+                    ActivityTypes = activityTypes,
+                    Clusters = clusters
                 };
+
                 return lookupTablesDto;
             }
             catch (Exception e)
