@@ -12,5 +12,7 @@ namespace CldStatsDto.Dto.Commands
         public List<ActivityTypeDto> ActivityTypes { get; set; }
 
         public List<QuarterDto> Quarters { get; set; }
+
+        public List<UserDto> Users { get; set; }
     }
 }
