@@ -3,9 +3,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CldServiceFactory.Services.Interfaces;
 using CldStatsDto.Dto.Commands;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CldStatsApi.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class LookupController : Controller
     {
         private readonly ILookupTablesService _lookupTablesService;
@@ -17,6 +20,7 @@ namespace CldStatsApi.Controllers
             _lookupTablesService = lookupTablesService;   
         }
 
+        
         [HttpGet]
         [Route("GetLookupTables")]
         public async Task<IActionResult> GetLookupTables()
@@ -36,6 +40,7 @@ namespace CldStatsApi.Controllers
         /// </summary>
         /// <param name="findLookupTables"></param>
         /// <returns></returns>
+        
         [HttpPost]
         [Route("FindLookupTables")]
         public async Task<IActionResult> FindLookupTables(FindLookupTables findLookupTables)

@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <None Remove="docker-compose.yml" />
+    <None Remove="Dockerfile" />
+    <None Remove="Dockerfile.original" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +22,10 @@
     <ProjectReference Include="..\CLDServiceFactory\CldServiceFactory.csproj" />
     <ProjectReference Include="..\CldStatsData\CldStatsData.csproj" />
     <ProjectReference Include="..\CldStatsDto\CldStatsDto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="..\.dockerignore" />
   </ItemGroup>
 
 </Project>
