@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CldStatsDto.Dto
+namespace CldStatsDto.Dto.Queries
 {
     public class QuarterDto
     {

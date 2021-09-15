@@ -1,4 +1,4 @@
-﻿namespace CldStatsDto.Dto
+﻿namespace CldStatsDto.Dto.Queries
 {
     public class ActivityTypeDto
     {

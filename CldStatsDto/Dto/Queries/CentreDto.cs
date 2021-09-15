@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CldStatsDto.Dto
+namespace CldStatsDto.Dto.Queries
 {
     public class CentreDto
     {

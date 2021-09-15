@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CldServiceFactory.Services.Interfaces;
 using CldStatsData;
 using CldStatsDto.Dto;
+using CldStatsDto.Dto.Queries;
 using Microsoft.EntityFrameworkCore;
 
 namespace CldServiceFactory.Services

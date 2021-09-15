@@ -6,6 +6,7 @@ using CldServiceFactory.Services.Interfaces;
 using CldStatsData;
 using CldStatsData.CldStatsModels;
 using CldStatsDto.Dto;
+using CldStatsDto.Dto.Queries;
 using Microsoft.EntityFrameworkCore;
 
 namespace CldServiceFactory.Services

@@ -43,7 +43,7 @@ namespace CldStatsApi.Controllers
         
         [HttpPost]
         [Route("FindLookupTables")]
-        public async Task<IActionResult> FindLookupTables(FindLookupTables findLookupTables)
+        public async Task<IActionResult> FindLookupTables(FindLookupTablesDto findLookupTables)
         {
             try
             {

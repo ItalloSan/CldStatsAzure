@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using CldServiceFactory.Services.Interfaces;
 using CldStatsDto.Dto;
+using CldStatsDto.Dto.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using CldStatsData.CldStatsModels;
 
-namespace CldStatsDto.Dto
+namespace CldStatsDto.Dto.Queries
 {
     public class LookupTablesDto
     {
