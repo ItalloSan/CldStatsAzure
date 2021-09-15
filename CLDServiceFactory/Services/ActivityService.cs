@@ -25,9 +25,9 @@ namespace CldServiceFactory.Services
             try
             {
                 var activities = await _cldStatsDbContext.Acivities
-                    .Include(a => a.Quarter)
-                    //.Include(a => a.ActivityClusters)
-                    //.ThenInclude(c => c.Cluster)
+                    .Where(a => findLookupTablesDto.ActivityTypes.Select(x => x.Id).Contains(a.ActivityType.Id) || findLookupTablesDto.ActivityTypes.Count == 0)
+                    .Where(a => findLookupTablesDto.Quarters.Select(x => x.Id).Contains(a.Quarter.Id) || findLookupTablesDto.Quarters.Count  == 0)
+                    .Where(a => findLookupTablesDto.Users.Select(x => x.Id).Contains(a.PipUser.Id) || findLookupTablesDto.Users.Count  == 0)
                     .Select(a => new ActivityDto()
                         {
                             Id = a.Id,
