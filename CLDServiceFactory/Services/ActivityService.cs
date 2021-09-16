@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using CldServiceFactory.Services.Interfaces;
 using CldStatsData;
 using CldStatsData.CldStatsModels;
 using CldStatsDto.Dto.Commands;
 using CldStatsDto.Dto.Queries;
-using Microsoft.EntityFrameworkCore;m  
+using Microsoft.EntityFrameworkCore;  
 
 namespace CldServiceFactory.Services
 {
@@ -250,7 +251,7 @@ namespace CldServiceFactory.Services
         #region upserts
 
         //add return type for error messages !!
-        public async Task<ActivityDto> UpsertActivity(ActivityDto activityDto)
+        public async Task<ActivityDto> CreateOrUpdateActivity(ActivityDto activityDto)
         {
             try
             {
@@ -259,9 +260,7 @@ namespace CldServiceFactory.Services
 
                 if (activityDto.QuarterDto.Id != currentQuarterId)
                     throw new ApplicationException("e.Message"); //proper error message
-
-                //var user = Iden
-
+                
                 var activity = await _cldStatsDbContext.Acivities
                     .Where(a => a.Id == activityDto.Id)
                     .FirstOrDefaultAsync();
@@ -274,12 +273,46 @@ namespace CldServiceFactory.Services
                         VolunteerHours = activityDto.VolunteerHours,
                         Note = activityDto.Note,
                         QuarterId = currentQuarterId,
-                        ActivityTypeId = activityDto.ActivityTypeDto.Id,
-                        // PipUserId = User
+                        ActivityTypeId = activityDto.ActivityTypeDto.Id, 
+                        PipUserId = activityDto.UserDto.Id,
+                        
                     };
+                    await _cldStatsDbContext.Acivities.AddAsync(newActivity);
+                    await _cldStatsDbContext.SaveChangesAsync();
+
+                    var activityClusters = new List<ActivityCluster>();
+                    foreach (var clusterDto in activityDto.ClusterDtos)
+                    {
+                        activityClusters.Add(new ActivityCluster()
+                        {
+                            ActivityId = newActivity.Id,
+                            ClusterId = clusterDto.Id
+                        });
+                    }
+
+                    await _cldStatsDbContext.ActivityClusters.AddRangeAsync(activityClusters);
+                    await _cldStatsDbContext.SaveChangesAsync();
+
+                    activityDto.Id = newActivity.Id;
+                    //activityDto.ClusterDtos = AssemblyNameProxy etc
+                    return activityDto;
+                }
+                else
+                {
+                    activity.Amount = activityDto.Amount;
+                    activity.VolunteerAmount = activityDto.VolunteerAmount;
+                    activity.VolunteerHours = activityDto.VolunteerHours;
+                    activity.Note = activityDto.Note;
+                    activity.QuarterId = activityDto.QuarterDto.Id;
+                    activity.ActivityTypeId = activityDto.ActivityTypeDto.Id;
+                    activity.PipUserId = activityDto.UserDto.Id;
+
+                    await _cldStatsDbContext.SaveChangesAsync();
+
+                    //do remove range & add range
 
                 }
-
+                
                 return new ActivityDto();
             }
             catch (Exception e)

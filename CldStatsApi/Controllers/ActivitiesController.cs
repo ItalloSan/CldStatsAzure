@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using CldServiceFactory.Services.Interfaces;
 using CldStatsDto.Dto.Commands;
+using CldStatsDto.Dto.Queries;
 
 namespace CldStatsApi.Controllers
 {
@@ -22,7 +23,6 @@ namespace CldStatsApi.Controllers
         }
 
         [HttpPost]
-
         [Route("GetActivityView")]
         public async Task<IActionResult> GetActivityView(FindLookupTablesDto findLookupTablesDto)
         {
@@ -30,6 +30,27 @@ namespace CldStatsApi.Controllers
             {
                 var activityView = await _activityService.GetActivityView(findLookupTablesDto);
                 return Ok(activityView);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("CreateOrUpdateActivity")]
+        public async Task<IActionResult> CreateOrUpdateActivity(ActivityDto activityDto)
+        {
+            try
+            {
+                //!TODO - pull user from identity
+                var userDto = new UserDto()
+                {
+                    Id = "244c545a-f665-47fc-87e3-d5943207c5a0"
+                };
+                activityDto.UserDto = userDto;
+                var activity = await _activityService.CreateOrUpdateActivity(activityDto);
+                return Ok(activity);
             }
             catch (Exception e)
             {
