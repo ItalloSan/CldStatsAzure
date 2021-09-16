@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using CldServiceFactory.Services.Interfaces;
 using CldStatsData;
+using CldStatsData.CldStatsModels;
 using CldStatsDto.Dto.Commands;
 using CldStatsDto.Dto.Queries;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;m  
 
 namespace CldServiceFactory.Services
 {
@@ -19,6 +20,7 @@ namespace CldServiceFactory.Services
             _cldStatsDbContext = cldStatsDbContext;
         }
 
+        #region gets
         /*public async Task<ActivityViewDto> GetActivityView(FindLookupTablesDto findLookupTablesDto)
         {
             try
@@ -121,7 +123,6 @@ namespace CldServiceFactory.Services
             }
 
         }
-
         private async Task<ActivityTotalDto> GetYtdTotals(FindLookupTablesDto findLookupTablesDto)
         {
             try
@@ -244,5 +245,50 @@ namespace CldServiceFactory.Services
                 throw new ApplicationException(ex.Message, ex.InnerException);
             }
         }
+        #endregion
+
+        #region upserts
+
+        //add return type for error messages !!
+        public async Task<ActivityDto> UpsertActivity(ActivityDto activityDto)
+        {
+            try
+            {
+                var currentQuarterId =
+                    await _cldStatsDbContext.CurrerntQuarters.Select(q => q.QuarterId).FirstOrDefaultAsync();
+
+                if (activityDto.QuarterDto.Id != currentQuarterId)
+                    throw new ApplicationException("e.Message"); //proper error message
+
+                //var user = Iden
+
+                var activity = await _cldStatsDbContext.Acivities
+                    .Where(a => a.Id == activityDto.Id)
+                    .FirstOrDefaultAsync();
+                if (activity == null) //new activity
+                {
+                    var newActivity = new Acivity()
+                    {
+                        Amount = activityDto.Amount,
+                        VolunteerAmount = activityDto.VolunteerAmount,
+                        VolunteerHours = activityDto.VolunteerHours,
+                        Note = activityDto.Note,
+                        QuarterId = currentQuarterId,
+                        ActivityTypeId = activityDto.ActivityTypeDto.Id,
+                        // PipUserId = User
+                    };
+
+                }
+
+                return new ActivityDto();
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException(e.Message, e);
+            }
+        }
+
+        #endregion
+
     }
 }

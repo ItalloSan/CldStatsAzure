@@ -13,7 +13,7 @@ namespace CldStatsDto.Dto.Queries
         public string Note { get; set; }
             
         public ActivityTypeDto ActivityTypeDto { get; set; }
-        public IEnumerable<ClusterDto> ClusterDtos { get; set; }
+        
         public UserDto UserDto { get; set; }
         public QuarterDto QuarterDto { get; set; }
 
