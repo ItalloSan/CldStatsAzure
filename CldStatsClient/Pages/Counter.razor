@@ -1,0 +1,28 @@
+﻿@page "/counter"
+@using CldStatsClient.Core.Services.Activities
+@using CldStatsDto.Dto.Commands
+@inject IActivityService _activityService
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<button class="btn btn-primary" @onclick="TestActivities">Click test</button>
+
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    private void TestActivities()
+    {
+        var findLookupTablesDto = new FindLookupTablesDto();
+        var response = _activityService.GetActivityView(findLookupTablesDto);
+    }
+
+}

@@ -22,6 +22,12 @@ namespace CldStatsApi.Controllers
             _activityService = activityService;
         }
 
+        [HttpGet]
+        public IActionResult HealthCheck()
+        {
+            return Ok("foo");
+        }
+
         [HttpPost]
         [Route("GetActivityView")]
         public async Task<IActionResult> GetActivityView(FindLookupTablesDto findLookupTablesDto)
