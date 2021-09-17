@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using CldServiceFactory.Services.Interfaces;
 using CldStatsData;
@@ -280,45 +279,54 @@ namespace CldServiceFactory.Services
                     await _cldStatsDbContext.Acivities.AddAsync(newActivity);
                     await _cldStatsDbContext.SaveChangesAsync();
 
-                    var activityClusters = new List<ActivityCluster>();
-                    foreach (var clusterDto in activityDto.ClusterDtos)
-                    {
-                        activityClusters.Add(new ActivityCluster()
-                        {
-                            ActivityId = newActivity.Id,
-                            ClusterId = clusterDto.Id
-                        });
-                    }
+                    var activityClusters = MapActivityClusters(activityDto.ClusterDtos, newActivity.Id);
 
                     await _cldStatsDbContext.ActivityClusters.AddRangeAsync(activityClusters);
                     await _cldStatsDbContext.SaveChangesAsync();
 
                     activityDto.Id = newActivity.Id;
-                    //activityDto.ClusterDtos = AssemblyNameProxy etc
                     return activityDto;
                 }
-                else
-                {
-                    activity.Amount = activityDto.Amount;
-                    activity.VolunteerAmount = activityDto.VolunteerAmount;
-                    activity.VolunteerHours = activityDto.VolunteerHours;
-                    activity.Note = activityDto.Note;
-                    activity.QuarterId = activityDto.QuarterDto.Id;
-                    activity.ActivityTypeId = activityDto.ActivityTypeDto.Id;
-                    activity.PipUserId = activityDto.UserDto.Id;
+                //edit
+                activity.Amount = activityDto.Amount;
+                activity.VolunteerAmount = activityDto.VolunteerAmount;
+                activity.VolunteerHours = activityDto.VolunteerHours;
+                activity.Note = activityDto.Note;
+                activity.QuarterId = activityDto.QuarterDto.Id;
+                activity.ActivityTypeId = activityDto.ActivityTypeDto.Id;
 
-                    await _cldStatsDbContext.SaveChangesAsync();
+                await _cldStatsDbContext.SaveChangesAsync();
+                var activityClustersToRemove =
+                    await _cldStatsDbContext.ActivityClusters.Where(a => a.ActivityId == activityDto.Id).ToListAsync();
 
-                    //do remove range & add range
+                var activityClustersToAdd = MapActivityClusters(activityDto.ClusterDtos, activityDto.Id);
 
-                }
-                
-                return new ActivityDto();
+                _cldStatsDbContext.ActivityClusters.RemoveRange(activityClustersToRemove);
+                _cldStatsDbContext.ActivityClusters.AddRange(activityClustersToAdd);
+                await _cldStatsDbContext.SaveChangesAsync();
+
+
+                return activityDto;
             }
             catch (Exception e)
             {
                 throw new ApplicationException(e.Message, e);
             }
+        }
+
+        private List<ActivityCluster> MapActivityClusters(IEnumerable<ClusterDto> clusterDtos, int activityId)
+        {
+            var activityClusters = new List<ActivityCluster>();
+            foreach (var clusterDto in clusterDtos)
+            {
+                activityClusters.Add(new ActivityCluster()
+                {
+                    ActivityId = activityId,
+                    ClusterId = clusterDto.Id
+                });
+            }
+
+            return activityClusters;
         }
 
         #endregion
