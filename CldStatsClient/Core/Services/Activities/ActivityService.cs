@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using CldStatsDto.Dto.Commands;
 using CldStatsDto.Dto.Queries;
+using Newtonsoft.Json;
 
 namespace CldStatsClient.Core.Services.Activities
 {
@@ -22,9 +25,20 @@ namespace CldStatsClient.Core.Services.Activities
             //https://localhost:5001/api/activities
             try
             {
-                var response = await _httpClient.GetAsync($"/api/activities");
-                var tmp = new ActivityViewDto();
-                return tmp;
+                //var response = await _httpClient.SendAsync($"/api/activities");
+                var path = $@"api/activities/GetActivityView";
+                var request = new HttpRequestMessage(HttpMethod.Post, path)
+                {
+                    Content = new StringContent(
+                        JsonConvert.SerializeObject(findLookupTablesDto),
+                        Encoding.UTF8, "application/json")
+                };
+
+                var response = await _httpClient.SendAsync(request);
+                var responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ActivityViewDto>(responseBody);
+                //var tmp = new ActivityViewDto();
+                //return tmp;
             }
             catch (Exception e)
             {
@@ -37,6 +51,28 @@ namespace CldStatsClient.Core.Services.Activities
         public async Task<ActivityDto> CreateOrUpdateActivity(ActivityDto activityDto)
         {
             return null;
+        }
+
+        private async Task<HttpResponseMessage> PostRequest(HttpRequestMessage request, string url)
+        {
+            try
+            {
+                var response = await _httpClient.SendAsync(request);
+                if (response.StatusCode != HttpStatusCode.Unauthorized) return response;
+
+                //await _httpClient.HandleToken();
+
+                var newRequest = new HttpRequestMessage(HttpMethod.Post, url)
+                {
+                    Content = request.Content
+                };
+                response = await _httpClient.SendAsync(newRequest);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.Message, ex);
+            }
         }
     }
 }

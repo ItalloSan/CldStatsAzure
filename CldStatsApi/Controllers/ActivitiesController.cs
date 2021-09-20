@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CldServiceFactory.Services.Interfaces;
 using CldStatsDto.Dto.Commands;
 using CldStatsDto.Dto.Queries;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CldStatsApi.Controllers
 {
@@ -23,6 +24,7 @@ namespace CldStatsApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult HealthCheck()
         {
             return Ok("foo");

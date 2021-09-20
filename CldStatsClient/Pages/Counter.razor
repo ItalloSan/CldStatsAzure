@@ -1,6 +1,7 @@
 ﻿@page "/counter"
 @using CldStatsClient.Core.Services.Activities
 @using CldStatsDto.Dto.Commands
+@using CldStatsDto.Dto.Queries
 @inject IActivityService _activityService
 <h1>Counter</h1>
 
@@ -10,19 +11,37 @@
 
 <button class="btn btn-primary" @onclick="TestActivities">Click test</button>
 
+<p>total: @_activityViewDto.ActivityTotalYtd.Opportunities</p>
 
 @code {
     private int currentCount = 0;
+    private ActivityViewDto _activityViewDto = new ActivityViewDto()
+    {
+        ActivityTotalYtd = new ActivityTotalDto(){Opportunities = 0}
+    };
 
     private void IncrementCount()
     {
         currentCount++;
     }
 
-    private void TestActivities()
+    private async Task TestActivities()
     {
-        var findLookupTablesDto = new FindLookupTablesDto();
-        var response = _activityService.GetActivityView(findLookupTablesDto);
+        var findLookupTablesDto = new FindLookupTablesDto()
+        {
+            ActivityTypes = new List<ActivityTypeDto>(),
+            Clusters = new List<ClusterDto>(),
+            Users = new List<UserDto>(),
+            Quarters = new List<QuarterDto>()
+            {
+                new QuarterDto()
+                {
+                    Id = 49
+                }
+            }
+
+        };
+        _activityViewDto = await _activityService.GetActivityView(findLookupTablesDto);
     }
 
 }
