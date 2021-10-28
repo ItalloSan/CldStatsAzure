@@ -45,9 +45,9 @@ namespace CldStatsApi
                 });
 
             
-            services.AddScoped<ILookupTablesService, LookupTablesService>();
-            services.AddScoped<ICentreFootfallService, CentreFootfallService>();
-            services.AddScoped<IActivityService, ActivityService>();
+            services.AddTransient<ILookupTablesService, LookupTablesService>();
+            services.AddTransient<ICentreFootfallService, CentreFootfallService>();
+            services.AddTransient<IActivityService, ActivityService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
