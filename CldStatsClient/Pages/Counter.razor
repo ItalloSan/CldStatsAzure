@@ -42,6 +42,7 @@
 
         };
         _activityViewDto = await _activityService.GetActivityView(findLookupTablesDto);
+        await InvokeAsync(StateHasChanged);
     }
 
 }

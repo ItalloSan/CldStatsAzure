@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using CldStatsClient.Data;
 using CldStatsClient.Core.Services.Activities;
 
 namespace CldStatsClient
@@ -30,7 +29,6 @@ namespace CldStatsClient
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
 
             //HTTP Services Config
             services.AddHttpClient<IActivityService, ActivityService>(c =>
