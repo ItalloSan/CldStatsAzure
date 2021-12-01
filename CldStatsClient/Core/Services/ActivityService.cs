@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using CldStatsClient.Core.Services.Activities;
 using CldStatsDto.Dto.Commands;
 using CldStatsDto.Dto.Queries;
 using Newtonsoft.Json;
 
-namespace CldStatsClient.Core.Services.Activities
+namespace CldStatsClient.Core.Services
 {
     public class ActivityService: IActivityService
     {
@@ -22,10 +21,8 @@ namespace CldStatsClient.Core.Services.Activities
 
         public async Task<ActivityViewDto> GetActivityView(FindLookupTablesDto findLookupTablesDto)
         {
-            //https://localhost:5001/api/activities
             try
             {
-                //var response = await _httpClient.SendAsync($"/api/activities");
                 var path = $@"api/activities/GetActivityView";
                 var request = new HttpRequestMessage(HttpMethod.Post, path)
                 {
