@@ -9,6 +9,7 @@ using CldServiceFactory.Services;
 using CldServiceFactory.Services.Interfaces;
 using CldStatsData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace CldStatsApi
 {
@@ -42,6 +43,14 @@ namespace CldStatsApi
             services.AddTransient<ILookupTablesService, LookupTablesService>();
             services.AddTransient<ICentreFootfallService, CentreFootfallService>();
             services.AddTransient<IActivityService, ActivityService>();
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.ClearProviders();
+                loggingBuilder
+                    //.AddDebug()
+                    .AddConsole();
+                // .Services..AddEventLog();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
