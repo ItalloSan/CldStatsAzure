@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
@@ -54,13 +55,14 @@ namespace CldStatsApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, CldStatsDbContext cldStatsDbContext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CldStatsApi v1"));
+                cldStatsDbContext.Database.Migrate();
             }
 
             //app.UseHttpsRedirection();
@@ -74,5 +76,6 @@ namespace CldStatsApi
                 endpoints.MapControllers();
             });
         }
+       
     }
 }
