@@ -39,5 +39,85 @@ namespace CldServiceFactory.Data.DataRetrieval
             }
         }
 
+        public async Task<List<QuarterDto>> GetStartOfFinYearQuarters()
+        {
+            try
+            {
+                var currentQuarter = await _cldStatsDbContext.CurrerntQuarters
+                    .Include(a => a.Quarter)
+                    .FirstOrDefaultAsync();
+
+                switch (currentQuarter!.Quarter.Name)
+                {
+                    case "1":
+                        return new List<QuarterDto>()
+                        {
+                            new QuarterDto()
+                            {
+                                Id = currentQuarter.Quarter.Id
+                            },
+                        };
+
+                    case "2":
+                        return new List<QuarterDto>()
+                        {
+                            new QuarterDto()
+                            {
+                                Id = currentQuarter.Quarter.Id
+                            },
+                            new QuarterDto()
+                            {
+                                Id = currentQuarter.Quarter.Id - 1
+                            },
+                        };
+
+                    case "3":
+                        return new List<QuarterDto>()
+                        {
+                            new QuarterDto()
+                            {
+                                Id = currentQuarter.Quarter.Id
+                            },
+                            new QuarterDto()
+                            {
+                                Id = currentQuarter.Quarter.Id - 1
+                            },
+                            new QuarterDto()
+                            {
+                                Id = currentQuarter.Quarter.Id - 2
+                            },
+                        };
+
+                    case "4":
+                        return new List<QuarterDto>()
+                        {
+                            new QuarterDto()
+                            {
+                                Id = currentQuarter.Quarter.Id
+                            },
+                            new QuarterDto()
+                            {
+                                Id = currentQuarter.Quarter.Id - 1
+                            },
+                            new QuarterDto()
+                            {
+                                Id = currentQuarter.Quarter.Id - 2
+                            },
+                            new QuarterDto()
+                            {
+                                Id = currentQuarter.Quarter.Id - 3
+                            },
+                        };
+
+                    default:
+                        return new List<QuarterDto>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.Message, ex.InnerException);
+            }
+        }
+
     }
 }

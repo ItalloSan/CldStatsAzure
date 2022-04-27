@@ -7,5 +7,6 @@ namespace CldServiceFactory.Interfaces.DataRetrieval
     public interface IQuarterRetrieval
     {
         Task<List<QuarterDto>> GetQuarters();
+        Task<List<QuarterDto>> GetStartOfFinYearQuarters();
     }
 }

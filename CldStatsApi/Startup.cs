@@ -50,6 +50,7 @@ namespace CldStatsApi
             services.AddTransient<IActivityTypeRetrieval, ActivityTypeRetrieval>();
             services.AddTransient<IClusterRetrieval, ClusterRetrieval>();
             services.AddTransient<IUserRetrieval, UserRetrieval>();
+            services.AddTransient<IActivityRetrieval, ActivityRetrieval>();
 
             services.AddLogging(loggingBuilder =>
             {
