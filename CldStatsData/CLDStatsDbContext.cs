@@ -45,7 +45,7 @@ namespace CldStatsData
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
+            //modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
 
             modelBuilder.Entity<Acivity>(entity =>
             {
@@ -319,10 +319,8 @@ namespace CldStatsData
 
                 entity.Property(e => e.StartDate).HasColumnType("date");
             });
-
-            OnModelCreatingPartial(modelBuilder);
+            
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        
     }
 }

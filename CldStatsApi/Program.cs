@@ -18,6 +18,14 @@ namespace CldStatsApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                // .ConfigureLogging(loggingBuilder =>
+                // {
+                //     loggingBuilder.ClearProviders();
+                //     loggingBuilder
+                //         //.AddDebug()
+                //         .AddConsole();
+                //        // .Services..AddEventLog();
+                // })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

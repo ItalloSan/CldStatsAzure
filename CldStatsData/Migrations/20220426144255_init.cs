@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CldStatsData.Migrations.CldStats
+#nullable disable
+
+namespace CldStatsData.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -117,8 +119,7 @@ namespace CldStatsData.Migrations.CldStats
                         name: "FK_Centres_Cluster",
                         column: x => x.ClusterId,
                         principalTable: "Cluster",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -146,8 +147,7 @@ namespace CldStatsData.Migrations.CldStats
                         name: "FK_AspNetUsers_PipUserStatus",
                         column: x => x.PipUserStatusId,
                         principalTable: "PipUserStatus",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -168,14 +168,12 @@ namespace CldStatsData.Migrations.CldStats
                         name: "FK_ActitityType_ActivityTypeStatus",
                         column: x => x.StatusId,
                         principalTable: "ActivityTypeStatus",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ActitityType_Priority",
                         column: x => x.PriorityId,
                         principalTable: "Priority",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -191,8 +189,7 @@ namespace CldStatsData.Migrations.CldStats
                         name: "FK_CurrerntQuarter_Quarter",
                         column: x => x.QuarterId,
                         principalTable: "Quarter",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -212,14 +209,12 @@ namespace CldStatsData.Migrations.CldStats
                         name: "FK_CentreFootfall_Centres",
                         column: x => x.CentreId,
                         principalTable: "Centres",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_CentreFootfall_Quarter",
                         column: x => x.QuarterId,
                         principalTable: "Quarter",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -307,20 +302,17 @@ namespace CldStatsData.Migrations.CldStats
                         name: "FK_Acivity_ActitityType",
                         column: x => x.ActivityTypeId,
                         principalTable: "ActitityType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Acivity_AspNetUsers",
                         column: x => x.PipUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Acivity_Quarter",
                         column: x => x.QuarterId,
                         principalTable: "Quarter",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -343,8 +335,7 @@ namespace CldStatsData.Migrations.CldStats
                         name: "FK_Activity_Cluster_Cluster",
                         column: x => x.ClusterId,
                         principalTable: "Cluster",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -361,18 +352,6 @@ namespace CldStatsData.Migrations.CldStats
                 name: "IX_Acivity_QuarterId",
                 table: "Acivity",
                 column: "QuarterId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ActitityType",
-                table: "ActitityType",
-                column: "Id",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ActitityType_1",
-                table: "ActitityType",
-                column: "Name",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ActitityType_PriorityId",

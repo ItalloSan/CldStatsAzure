@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 
 using System.Threading.Tasks;
-using CldServiceFactory.Services.Interfaces;
+using CldServiceFactory.Interfaces;
 using CldStatsDto.Dto.Commands;
 using CldStatsDto.Dto.Queries;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace CldStatsApi.Controllers
 {
@@ -14,12 +16,22 @@ namespace CldStatsApi.Controllers
     public class ActivitiesController : ControllerBase
     {
         private readonly IActivityService _activityService;
+        private readonly ILogger<ActivitiesController> _logger;
 
         public ActivitiesController(
-            IActivityService activityService
+            IActivityService activityService,
+            ILogger<ActivitiesController> logger
         )
         {
             _activityService = activityService;
+            _logger = logger;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult HealthCheck()
+        {
+            return Ok("foo");
         }
 
         [HttpPost]
@@ -28,7 +40,9 @@ namespace CldStatsApi.Controllers
         {
             try
             {
+                _logger.LogInformation("Calling GetActivityView ");
                 var activityView = await _activityService.GetActivityView(findLookupTablesDto);
+                
                 return Ok(activityView);
             }
             catch (Exception e)

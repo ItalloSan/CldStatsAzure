@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using CldStatsDto.Dto.Commands;
 using CldStatsDto.Dto.Queries;
 
-namespace CldServiceFactory.Services.Interfaces
+namespace CldStatsClient.Core.Services.Activities
 {
     public interface IActivityService
     {

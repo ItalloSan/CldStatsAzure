@@ -1,28 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CldStatsData", "CldStatsData\CldStatsData.csproj", "{B95B1A47-2442-47C6-84F1-771AA88A7BAB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CldStatsFunctions", "CldStatsFunctions\CldStatsFunctions.csproj", "{84DD61CD-4DE6-485A-92B2-E24D7CF186C7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CldServiceFactory", "CLDServiceFactory\CldServiceFactory.csproj", "{31C9083B-8F87-40CA-AB99-ACCD0DA6655F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CldStatsDto", "CldStatsDto\CldStatsDto.csproj", "{038AFE89-EB96-4752-B299-A74F4ECE578C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CldServiceFactory.Test", "CLDServiceFactory.Test\CldServiceFactory.Test.csproj", "{ECD70858-FEDC-4F3C-A047-F74DBF77A222}"
-	ProjectSection(ProjectDependencies) = postProject
-		{31C9083B-8F87-40CA-AB99-ACCD0DA6655F} = {31C9083B-8F87-40CA-AB99-ACCD0DA6655F}
-		{B95B1A47-2442-47C6-84F1-771AA88A7BAB} = {B95B1A47-2442-47C6-84F1-771AA88A7BAB}
-		{038AFE89-EB96-4752-B299-A74F4ECE578C} = {038AFE89-EB96-4752-B299-A74F4ECE578C}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLDStatsClient", "..\CLDStats\CLDStatsClient.csproj", "{6484480E-4A45-4933-95E1-B7433194EA2D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CldStatsApi", "CldStatsApi\CldStatsApi.csproj", "{358BD694-13C6-4D3B-8A12-BF9A5E3236CB}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{133B7AEE-387E-46C7-A1C9-7B83630F7BAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CldStatsClient", "CldStatsClient\CldStatsClient.csproj", "{068B7430-089C-42C6-A2D7-71B51C419848}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CldStatsData", "CldStatsData\CldStatsData.csproj", "{B5983593-C6F1-4E7F-8A66-16E8FAD35AAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,14 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B95B1A47-2442-47C6-84F1-771AA88A7BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B95B1A47-2442-47C6-84F1-771AA88A7BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B95B1A47-2442-47C6-84F1-771AA88A7BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B95B1A47-2442-47C6-84F1-771AA88A7BAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84DD61CD-4DE6-485A-92B2-E24D7CF186C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84DD61CD-4DE6-485A-92B2-E24D7CF186C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84DD61CD-4DE6-485A-92B2-E24D7CF186C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84DD61CD-4DE6-485A-92B2-E24D7CF186C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31C9083B-8F87-40CA-AB99-ACCD0DA6655F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31C9083B-8F87-40CA-AB99-ACCD0DA6655F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31C9083B-8F87-40CA-AB99-ACCD0DA6655F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -46,22 +27,18 @@ Global
 		{038AFE89-EB96-4752-B299-A74F4ECE578C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{038AFE89-EB96-4752-B299-A74F4ECE578C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{038AFE89-EB96-4752-B299-A74F4ECE578C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECD70858-FEDC-4F3C-A047-F74DBF77A222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECD70858-FEDC-4F3C-A047-F74DBF77A222}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECD70858-FEDC-4F3C-A047-F74DBF77A222}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECD70858-FEDC-4F3C-A047-F74DBF77A222}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6484480E-4A45-4933-95E1-B7433194EA2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6484480E-4A45-4933-95E1-B7433194EA2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6484480E-4A45-4933-95E1-B7433194EA2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6484480E-4A45-4933-95E1-B7433194EA2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{358BD694-13C6-4D3B-8A12-BF9A5E3236CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{358BD694-13C6-4D3B-8A12-BF9A5E3236CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{358BD694-13C6-4D3B-8A12-BF9A5E3236CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{358BD694-13C6-4D3B-8A12-BF9A5E3236CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{133B7AEE-387E-46C7-A1C9-7B83630F7BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{133B7AEE-387E-46C7-A1C9-7B83630F7BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{133B7AEE-387E-46C7-A1C9-7B83630F7BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{133B7AEE-387E-46C7-A1C9-7B83630F7BAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{068B7430-089C-42C6-A2D7-71B51C419848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{068B7430-089C-42C6-A2D7-71B51C419848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{068B7430-089C-42C6-A2D7-71B51C419848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{068B7430-089C-42C6-A2D7-71B51C419848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5983593-C6F1-4E7F-8A66-16E8FAD35AAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5983593-C6F1-4E7F-8A66-16E8FAD35AAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5983593-C6F1-4E7F-8A66-16E8FAD35AAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5983593-C6F1-4E7F-8A66-16E8FAD35AAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

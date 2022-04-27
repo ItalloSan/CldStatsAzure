@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CldServiceFactory.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using CldServiceFactory.Services.Interfaces;
 using CldStatsDto.Dto.Commands;
 using Microsoft.AspNetCore.Authorization;
 

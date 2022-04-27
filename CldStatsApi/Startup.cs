@@ -1,20 +1,18 @@
+using System;
+using CldServiceFactory.Data.DataRetrieval;
+using CldServiceFactory.Interfaces;
+using CldServiceFactory.Interfaces.DataRetrieval;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CldServiceFactory.Services;
-using CldServiceFactory.Services.Interfaces;
 using CldStatsData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace CldStatsApi
 {
@@ -45,22 +43,37 @@ namespace CldStatsApi
                 });
 
             
-            services.AddScoped<ILookupTablesService, LookupTablesService>();
-            services.AddScoped<ICentreFootfallService, CentreFootfallService>();
-            services.AddScoped<IActivityService, ActivityService>();
+            services.AddTransient<ILookupTablesService, LookupTablesService>();
+            services.AddTransient<ICentreFootfallService, CentreFootfallService>();
+            services.AddTransient<IActivityService, ActivityService>();
+            services.AddTransient<IQuarterRetrieval, QuarterRetrieval>();
+            services.AddTransient<IActivityTypeRetrieval, ActivityTypeRetrieval>();
+            services.AddTransient<IClusterRetrieval, ClusterRetrieval>();
+            services.AddTransient<IUserRetrieval, UserRetrieval>();
+            services.AddTransient<IActivityRetrieval, ActivityRetrieval>();
+
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.ClearProviders();
+                loggingBuilder
+                    //.AddDebug()
+                    .AddConsole();
+                // .Services..AddEventLog();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, CldStatsDbContext cldStatsDbContext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CldStatsApi v1"));
+                cldStatsDbContext.Database.Migrate();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -71,5 +84,6 @@ namespace CldStatsApi
                 endpoints.MapControllers();
             });
         }
+       
     }
 }
