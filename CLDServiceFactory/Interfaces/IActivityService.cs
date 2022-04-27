@@ -1,9 +1,8 @@
-﻿
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CldStatsDto.Dto.Commands;
 using CldStatsDto.Dto.Queries;
 
-namespace CldServiceFactory.Services.Interfaces
+namespace CldServiceFactory.Interfaces
 {
     public interface IActivityService
     {

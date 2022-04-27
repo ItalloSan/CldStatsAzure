@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CldServiceFactory.Services.Interfaces;
+using CldServiceFactory.Interfaces;
 using CldStatsData;
 using CldStatsData.CldStatsModels;
 using CldStatsDto.Dto.Commands;

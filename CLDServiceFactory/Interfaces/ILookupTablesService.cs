@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using CldStatsData.CldStatsModels;
 using CldStatsDto.Dto.Queries;
 
-namespace CldServiceFactory.Services.Interfaces
+namespace CldServiceFactory.Interfaces
 {
     public interface ILookupTablesService
     {

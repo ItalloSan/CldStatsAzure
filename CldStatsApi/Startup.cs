@@ -1,4 +1,7 @@
 using System;
+using CldServiceFactory.Data.DataRetrieval;
+using CldServiceFactory.Interfaces;
+using CldServiceFactory.Interfaces.DataRetrieval;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
@@ -7,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using CldServiceFactory.Services;
-using CldServiceFactory.Services.Interfaces;
 using CldStatsData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -44,6 +46,8 @@ namespace CldStatsApi
             services.AddTransient<ILookupTablesService, LookupTablesService>();
             services.AddTransient<ICentreFootfallService, CentreFootfallService>();
             services.AddTransient<IActivityService, ActivityService>();
+            services.AddTransient<IQuarterRetrieval, QuarterRetrieval>();
+
             services.AddLogging(loggingBuilder =>
             {
                 loggingBuilder.ClearProviders();

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 
 using System.Threading.Tasks;
-using CldServiceFactory.Services.Interfaces;
+using CldServiceFactory.Interfaces;
 using CldStatsDto.Dto.Commands;
 using CldStatsDto.Dto.Queries;
 using Microsoft.AspNetCore.Authorization;

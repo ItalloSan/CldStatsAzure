@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CldServiceFactory.Services.Interfaces;
+using CldServiceFactory.Interfaces;
+using CldServiceFactory.Interfaces.DataRetrieval;
 using CldStatsData;
 using CldStatsData.CldStatsModels;
 using CldStatsDto.Dto;
@@ -14,9 +15,12 @@ namespace CldServiceFactory.Services
     public class LookupTablesService : ILookupTablesService
     {
         private readonly CldStatsDbContext _cldStatsDbContext;
-        public LookupTablesService(CldStatsDbContext cldStatsDbContext)
+        private readonly IQuarterRetrieval _quarterRetrieval;
+        public LookupTablesService(CldStatsDbContext cldStatsDbContext,
+            IQuarterRetrieval quarterRetrieval)
         {
             _cldStatsDbContext = cldStatsDbContext;
+            _quarterRetrieval = quarterRetrieval;
         }
 
         public async Task<List<Cluster>> GetClusters()
@@ -38,15 +42,7 @@ namespace CldServiceFactory.Services
         {
             try
             {
-                var quarters = await _cldStatsDbContext.Quarters
-                    .Select(q => new QuarterDto()
-                    {
-                        Id = q.Id,
-                        Name = q.Name,
-                        StartDate = q.StartDate,
-                        EndDate = q.EndDate
-                    })
-                    .ToListAsync();
+                var quarters = await _quarterRetrieval.GetQuarters();
 
                 var users = await _cldStatsDbContext.AspNetUsers
                     .Select(u => new UserDto()
