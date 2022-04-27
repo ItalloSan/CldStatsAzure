@@ -16,63 +16,36 @@ namespace CldServiceFactory.Services
     {
         private readonly CldStatsDbContext _cldStatsDbContext;
         private readonly IQuarterRetrieval _quarterRetrieval;
+        private readonly IActivityTypeRetrieval _activityTypeRetrieval;
+        private readonly IClusterRetrieval _clusterRetrieval;
+        private readonly IUserRetrieval _userRetrieval;
+
         public LookupTablesService(CldStatsDbContext cldStatsDbContext,
-            IQuarterRetrieval quarterRetrieval)
+            IQuarterRetrieval quarterRetrieval,
+            IActivityTypeRetrieval activityTypeRetrieval,
+            IClusterRetrieval clusterRetrieval,
+            IUserRetrieval userRetrieval)
         {
             _cldStatsDbContext = cldStatsDbContext;
             _quarterRetrieval = quarterRetrieval;
+            _activityTypeRetrieval = activityTypeRetrieval;
+            _clusterRetrieval = clusterRetrieval;
+            _userRetrieval = userRetrieval;
         }
 
-        public async Task<List<Cluster>> GetClusters()
-        {
-            try
-            {
-                var clusters = await _cldStatsDbContext.Clusters.ToListAsync();
-                return clusters;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw new ApplicationException(e.Message, e);
-            }
-            
-        }
-
+       
         public async Task<LookupTablesDto> GetLookupTables()
         {
             try
             {
                 var quarters = await _quarterRetrieval.GetQuarters();
 
-                var users = await _cldStatsDbContext.AspNetUsers
-                    .Select(u => new UserDto()
-                    {
-                        Id = u.Id,
-                        Email = u.Email
-                    })
-                    .OrderBy(u => u.Email)
-                    .ToListAsync();
+                var users = await _userRetrieval.GetUsers(); 
 
-                var activityTypes = await _cldStatsDbContext.ActitityTypes
-                    .Select(a => new ActivityTypeDto()
-                    {
-                        Id = a.Id,
-                        Name = a.Name,
-                        Description = a.Description,
-                        PriorityId = a.PriorityId
-                    })
-                    .OrderBy(q => q.PriorityId)
-                    .ThenBy(q => q.Name)
-                    .ToListAsync();
-                
-                var clusters = await _cldStatsDbContext.Clusters
-                    .Select(c => new ClusterDto()
-                        {
-                            Name = c.Name,
-                            Id = c.Id
-                        }
-                    )
-                    .ToListAsync();
+                var activityTypes = await _activityTypeRetrieval.GetActivityTypes();
+
+                var clusters = await _clusterRetrieval.GetClusters();
+
                 var lookupTablesDto = new LookupTablesDto()
                 {
                     Quarters = quarters,

@@ -8,7 +8,6 @@ namespace CldServiceFactory.Interfaces
     public interface ILookupTablesService
     {
         
-            Task<List<Cluster>> GetClusters();
         Task<LookupTablesDto> GetLookupTables();
     }
 }

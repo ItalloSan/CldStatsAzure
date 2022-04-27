@@ -47,6 +47,9 @@ namespace CldStatsApi
             services.AddTransient<ICentreFootfallService, CentreFootfallService>();
             services.AddTransient<IActivityService, ActivityService>();
             services.AddTransient<IQuarterRetrieval, QuarterRetrieval>();
+            services.AddTransient<IActivityTypeRetrieval, ActivityTypeRetrieval>();
+            services.AddTransient<IClusterRetrieval, ClusterRetrieval>();
+            services.AddTransient<IUserRetrieval, UserRetrieval>();
 
             services.AddLogging(loggingBuilder =>
             {
